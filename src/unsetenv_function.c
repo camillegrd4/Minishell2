@@ -41,6 +41,7 @@ int find_line_unset(shell_t *shell, int i, int j, int y)
     if (my_strncmp(save, shell->array[1], my_strlen(shell->name)) != 0) {
         return 1;
     }
+    shell->pos = y;
     return 0;
 }
 
@@ -56,6 +57,7 @@ int my_unsetenv(shell_t *shell)
     while (shell->save_env[y] != NULL) {
         if (shell->save_env[y][i] == shell->unset[j]) {
             if (i = find_line_unset(shell, i, j, y) != 1) {
+                printf("coucou\n");
                 shell->save_env = remove_line(shell, i, y);
                 break;
             } else
