@@ -46,6 +46,7 @@ char *change_line(shell_t *shell, int i, int y);
 int change_env_next(shell_t *shell, int line);
 int my_unsetenv(shell_t *shell);
 char **remove_line(shell_t *shell, int i, int y);
+int access_function(int i, char **envp, char *path, shell_t *shell);
 
 /*lib*/
 int my_putchar(char c);
