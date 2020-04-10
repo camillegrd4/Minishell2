@@ -57,7 +57,6 @@ int my_unsetenv(shell_t *shell)
     while (shell->save_env[y] != NULL) {
         if (shell->save_env[y][i] == shell->unset[j]) {
             if (i = find_line_unset(shell, i, j, y) != 1) {
-                printf("coucou\n");
                 shell->save_env = remove_line(shell, i, y);
                 break;
             } else
