@@ -65,6 +65,7 @@ int principal_function(char **envp, shell_t *shell)
     while (1) {
         my_putstr("$ > ");
         if (x = getline(&line, &n, stdin) == -1) {
+            my_putstr("exit\n");
             exit(0);
         }
         if (x != -1) {

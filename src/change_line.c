@@ -29,9 +29,8 @@ int change_env_next(shell_t *shell, int line)
     return 0;
 }
 
-int check_arg(shell_t *shell, char **envp)
+int check_arg(char *name, shell_t *shell)
 {
-    char *name = my_strdup(shell->array[1]);
     int i = 0;
 
     while (name[i] != '\0') {
@@ -53,7 +52,7 @@ int change_env(char **envp, shell_t *shell)
     if (!shell->array[2]) {
         shell->array[2] = " ";
     }
-    if (check_arg(shell, envp) == 1)
+    if (check_arg(shell->array[1], shell) == 1)
         return 1;
     shell->line = 0;
     change_env_next(shell, line);
