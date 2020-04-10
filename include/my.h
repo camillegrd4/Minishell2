@@ -47,6 +47,8 @@ int change_env_next(shell_t *shell, int line);
 int my_unsetenv(shell_t *shell);
 char **remove_line(shell_t *shell, int i, int y);
 int access_function(int i, char **envp, char *path, shell_t *shell);
+int exec_binary(shell_t *shell, char **envp);
+int exec_function_system(shell_t *shell, char **envp, int i);
 
 /*lib*/
 int my_putchar(char c);
@@ -68,5 +70,8 @@ char *my_strcat_two(char *dest, char const *src);
 int my_putstr_without_return(char const *str);
 int my_strlen_env(char *str);
 int my_strlen_egale(char const *str);
+
+/*criterion*/
+void redirect_all_stdout(void);
 
 #endif /* !MY_H */

@@ -20,7 +20,7 @@ int cd_function(shell_t *shell)
     if (!shell || !shell->array[0])
         return 84;
     if (chdir(shell->array[1]) == -1)
-        return 84;
+        my_putstr("error: Permission denied.\n");
     return 0;
 }
 

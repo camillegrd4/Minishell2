@@ -13,9 +13,10 @@ int find_path(shell_t *shell, char **envp)
 
     if (!shell || !envp)
         return 84;
-    while (shell->save_env[i]) {
-        if (my_strncmp_next(shell->save_env[i], "PATH", 4) == 0) {
-            shell->path_bis = my_str_to_world_array_colon(&shell->save_env[i][5]);
+    while (envp[i]) {
+        if (my_strncmp_next(envp[i], "PATH", 4) == 0) {
+            shell->path_bis
+                = my_str_to_world_array_colon(&envp[i][5]);
             return 0;
         }
         i++;
@@ -54,13 +55,14 @@ int execve_function(char **envp, shell_t *shell)
     while (shell->path_bis[i] != NULL) {
         if (access(shell->array[0], F_OK) == 0) {
             access_function(i, envp, shell->array[0], shell);
-        } else {
-            shell->path_bis[i] = my_strcat_two(shell->path_bis[i], shell->array[0]);
-            if (access(shell->path_bis[i], F_OK) == 0)
-                access_function(i, envp, shell->path_bis[i], shell);
+        }
+        else {
+            if (exec_function_system(shell, envp, i) == 84)
+                return 84;
         }
         i++;
     }
+    exec_binary(shell, envp);
     command_not_found(envp, shell);
     return 0;
 }
