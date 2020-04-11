@@ -36,9 +36,22 @@ int command_not_found(char **envp, shell_t *shell)
 
 int access_function(int i, char **envp, char *path, shell_t *shell)
 {
+    errno == 0;
     if (access(path, F_OK) == 0) {
-        if (execve(path, shell->array, envp) == -1)
-            exit(0);
+        if (execve(path, shell->array, envp) == -1) {
+            if (errno == 8) {
+                path = check_path(path);
+                my_putstr(path);
+                my_putstr(": Exec format error. Wrong Architecture.\n");
+                exit(0);
+            }
+            else if (errno == EACCES) {
+                path = check_path(path);
+                my_putstr(path);
+                my_putstr(": Permission denied.\n");
+                exit(0);
+            }
+        }
         exit(0);
     }
     return 0;
@@ -50,6 +63,7 @@ int execve_function(char **envp, shell_t *shell)
 
     if (!envp || !shell)
         return 84;
+    exec_binary(shell, envp);
     if (find_path(shell, envp) == 84)
         command_not_found(envp, shell);
     while (shell->path_bis[i] != NULL) {
@@ -62,7 +76,6 @@ int execve_function(char **envp, shell_t *shell)
         }
         i++;
     }
-    exec_binary(shell, envp);
     command_not_found(envp, shell);
     return 0;
 }
@@ -71,6 +84,7 @@ int exec_function(char **envp, shell_t *shell)
 {
     struct stat buf;
     pid_t pid;
+    int wstatus = 0;
 
     if (!envp || !shell)
         return 84;
@@ -85,7 +99,9 @@ int exec_function(char **envp, shell_t *shell)
             if (execve_function(envp, shell) == 84)
                 return 84;
         } else {
-            pid = waitpid(-1, NULL, 0);
+            pid = waitpid(pid, &wstatus, 0);
+            if (check_error_father(wstatus) == 1)
+                return 1;
         }
     }
     return 0;

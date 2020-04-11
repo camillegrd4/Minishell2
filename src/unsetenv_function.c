@@ -51,8 +51,10 @@ int my_unsetenv(shell_t *shell)
     int i = 0;
     int j = 0;
 
-    if (!shell->array[1])
-        return 0;
+    if (!shell->array[1]) {
+        my_putstr("unsetenv: Too few arguments.\n");
+        return 1;
+    }
     shell->unset = my_strdup(shell->array[1]);
     while (shell->save_env[y] != NULL) {
         if (shell->save_env[y][i] == shell->unset[j]) {
@@ -64,7 +66,5 @@ int my_unsetenv(shell_t *shell)
         } else
             y++;
     }
-    my_putstr(shell->array[0]);
-    my_putstr(": Command not found.\n");
-    return 1;
+    return 0;
 }

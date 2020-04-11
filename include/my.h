@@ -12,13 +12,13 @@
 #include <unistd.h>
 #include <errno.h>
 #include <sys/types.h>
+#include <signal.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sys/types.h>
-#include <sys/wait.h>
-#include <signal.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <string.h>
 #include <fcntl.h>
 #include "stdbool.h"
 #include "stdlib.h"
@@ -52,6 +52,8 @@ char **remove_line(shell_t *shell, int i, int y);
 int access_function(int i, char **envp, char *path, shell_t *shell);
 int exec_binary(shell_t *shell, char **envp);
 int exec_function_system(shell_t *shell, char **envp, int i);
+char *check_path(char *path);
+int check_error_father(int wstatus);
 
 /*lib*/
 int my_putchar(char c);

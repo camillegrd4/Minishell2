@@ -25,6 +25,7 @@ SRC	=		src/main.c \
 			lib/my_strcat_two.c \
 			src/unsetenv_function.c \
 			src/exec_binary.c \
+			src/check_function.c \
 
 CFLAGS	=	-I ./include -g
 
