@@ -28,8 +28,7 @@ int exec_binary(shell_t *shell, char **envp)
 }
 int exec_function_system(shell_t *shell, char **envp, int i)
 {
-    shell->path_bis[i] 
-        = my_strcat_two(shell->path_bis[i], shell->array[0]);
+    shell->path_bis[i] = my_strcat_two(shell->path_bis[i], shell->array[0]);
     if (access(shell->path_bis[i], F_OK) == 0)
         access_function(i, envp, shell->path_bis[i], shell);
     return 0;

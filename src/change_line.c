@@ -36,7 +36,8 @@ int check_arg(char *name, shell_t *shell)
     while (name[i] != '\0') {
         if (name[i] == '=') {
             my_putstr(shell->array[0]);
-            my_putstr(": Variable name must contain alphanumeric characters.\n");
+            my_putstr(": Variable name must contain alphanumeric characters.");
+            my_putchar('\n');
             return 1;
         }
         i++;
