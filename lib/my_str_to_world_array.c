@@ -41,7 +41,7 @@ char **add_letter(char **array, int number, char *str)
     int a = 0;
 
     while (number > 0 && i <= my_strlen(str)) {
-        array[a] = malloc(sizeof(char) * (lines_colon(&str[i]) + 1));
+        array[a] = malloc(sizeof(char) * (lines(&str[i]) + 1));
         while (str[i] != '\0' && str[i] != ':' && str[i] != '\t' && 
         str[i] != ' ' && str[i] != '\n') {
             array[a][j] = str[i];
@@ -60,7 +60,7 @@ char **add_letter(char **array, int number, char *str)
 
 char **my_str_to_world_array(char *str)
 {
-    int number = number_char_colon(str) + 1;
+    int number = number_char(str) + 1;
     char **array = malloc(sizeof(char *) * (number + 1));
 
     array = add_letter(array, number, str);

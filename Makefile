@@ -26,6 +26,7 @@ SRC	=		src/main.c \
 			src/unsetenv_function.c \
 			src/exec_binary.c \
 			src/check_function.c \
+			src/find_path.c \
 
 CFLAGS	=	-I ./include -g
 

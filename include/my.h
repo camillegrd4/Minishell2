@@ -67,7 +67,7 @@ char **my_str_to_world_array_colon(char *str);
 char *my_strdup(char const *src);
 int number_char(char *str);
 int lines(char *str);
-int number_char_colon(char *str);
+int number_char_colon(char *str, int i);
 int lines_colon(char *str);
 int cd_function(shell_t *shell);
 int my_strncmp_next(char const *s1, char const *s2, int n);
