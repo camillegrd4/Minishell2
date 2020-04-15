@@ -58,7 +58,7 @@ char **add_letter_colon(char **array, int number, char *str, int i)
     return array;
 }
 
-char **check_space(char **array, int number, char **form)
+char **check_space_colon(char **array, int number, char **form)
 {
     int j = 0;
     int a = 0;
@@ -98,6 +98,6 @@ char **my_str_to_world_array_colon(char *str)
     array = malloc(sizeof(char *) * (number + 1));
     array = add_letter_colon(array, number, str, i);
     form = malloc(sizeof(char *) * (number));
-    array = check_space(array, number, form);
+    array = check_space_colon(array, number, form);
     return array;
 }

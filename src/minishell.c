@@ -71,7 +71,7 @@ int principal_function(char **envp, shell_t *shell)
         }
         if (x != -1) {
             shell->cmd = line;
-            shell->array = my_str_to_world_array_colon(shell->cmd);
+            shell->array = my_str_to_world_array(shell->cmd);
         }
         if (!shell->cmd) {
             my_putstr("exit\n");
