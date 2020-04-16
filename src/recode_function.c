@@ -18,7 +18,14 @@ int exit_function(shell_t *shell)
 
 int cd_normal(shell_t *shell, char *path)
 {
+    static int value = 0;
+
+
     errno = 0;
+    if (value == 0 && my_strncmp(path, "..", 2)== 0) {
+        my_putstr(": No such file or directory.\n");
+        return 1;
+    }
     if (chdir(path) == -1) {
         if (errno == EACCES) {
             my_putstr("error: Permission denied.\n");
@@ -35,6 +42,7 @@ int cd_normal(shell_t *shell, char *path)
             return 1;
         }
     }
+    value = 1;
     return 0;
 }
 
