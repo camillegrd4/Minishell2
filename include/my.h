@@ -55,6 +55,7 @@ int check_error_father(int wstatus);
 int check_getline(shell_t *shell, char **envp, int x, char *line);
 int call_exec_comma_function(char *line, shell_t *shell, char **envp);
 int check_line(char *line, shell_t *shell, int i);
+int exec_cd(shell_t *shell, char *path);
 
 /*lib*/
 int my_strlen_comma(char const *str);
