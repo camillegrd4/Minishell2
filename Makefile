@@ -30,6 +30,7 @@ SRC	=		src/main.c \
 			src/call_function_recode.c \
 			src/comma_function.c \
 			src/cd_function.c \
+			src/setenv_function.c \
 
 CFLAGS	=	-I ./include -g
 

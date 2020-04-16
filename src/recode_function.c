@@ -16,21 +16,6 @@ int exit_function(shell_t *shell)
     return 0;
 }
 
-int setenv_function(char **envp, shell_t *shell)
-{
-    int i = 0;
-
-    if (!shell)
-        return 84;
-    if (shell->array[3] != NULL) {
-        my_putstr("setenv: Too many arguments.\n");
-        return 1;
-    }
-    if (shell->array[1])
-        change_env(envp, shell);
-    return 0;
-}
-
 int unsetenv_function(shell_t *shell)
 {
     if (!shell)
