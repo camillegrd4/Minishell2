@@ -9,12 +9,13 @@
 
 shell_t *init_struct_minishell(void)
 {
-    shell_t * shell = malloc(sizeof(shell_t));
+    shell_t *shell = malloc(sizeof(shell_t));
     if (!shell)
         return NULL;
     shell->array = NULL;
     shell->cmd = NULL;
     shell->path = NULL;
     shell->path_bis = NULL;
+    shell->comma = malloc(sizeof(comma_t));
     return shell;
 }

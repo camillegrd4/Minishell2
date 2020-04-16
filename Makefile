@@ -28,6 +28,7 @@ SRC	=		src/main.c \
 			src/check_function.c \
 			src/find_path.c \
 			src/call_function_recode.c \
+			src/comma_function.c \
 
 CFLAGS	=	-I ./include -g
 

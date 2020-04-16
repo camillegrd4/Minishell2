@@ -21,13 +21,12 @@ typedef struct shell {
     char *unset;
     int pos;
     int find_line;
+    struct comma_s *comma;
 }shell_t;
 
-typedef struct env {
-    char *name;
-    char *params;
-    char *str;
-    struct tetris *next;
-}env_t;
+typedef struct comma_s {
+    char *first_arg;
+    char *second_arg;
+}comma_t;
 
 #endif /* !STRUCT_H */
