@@ -14,11 +14,12 @@ int change_save_env(char **envp, shell_t *shell)
     char *arg_one = my_strdup(shell->array[1]);
     char *arg_two = my_strdup(shell->array[2]);
 
-    shell->new_env = malloc(sizeof(char *) * (count_line(envp)) + 2);
-    while (envp[j] != NULL) {
-        shell->new_env[i] = malloc(sizeof(char) * (my_strlen(envp[j]) +
-            my_strlen(arg_one) + my_strlen(arg_two)) + 2);
-        shell->new_env[i] = my_strdup(envp[j]);
+    shell->new_env = malloc(sizeof(char *)
+        * (count_line(shell->save_env)) + 2);
+    while (shell->save_env[j] != NULL) {
+        shell->new_env[i] = malloc(sizeof(char) * (my_strlen(shell->save_env[j])
+        + my_strlen(arg_one) + my_strlen(arg_two)) + 2);
+        shell->new_env[i] = my_strdup(shell->save_env[j]);
         j++;
         i++;
     }

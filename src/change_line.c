@@ -42,6 +42,10 @@ int check_arg(char *name, shell_t *shell)
         }
         i++;
     }
+    if (shell->array[3] && my_strncmp(shell->array[2], " ", 1) != 0) {
+        my_putstr("setenv: Too many arguments.\n");
+        return 1;
+    }
     return 0;
 }
 
@@ -50,15 +54,13 @@ int change_env(char **envp, shell_t *shell)
     int line = 0;
     char **str = NULL;
 
-    if (!shell->array[2]) {
+    if (!shell->array[2])
         shell->array[2] = " ";
-    }
     if (check_arg(shell->array[1], shell) == 1)
         return 1;
     shell->line = 0;
     change_env_next(shell, line);
     if (shell->line == 0) {
-        change_save_env(envp, shell);
         shell->save_env = add_line(envp, shell);
     }
     return 0;

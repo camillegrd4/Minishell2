@@ -52,9 +52,11 @@ int principal_function(char **envp, shell_t *shell)
             exit(0);
         }
         if (x != -1) {
-            if (call_exec_comma_function(line, shell, envp) != 1)
+            if (call_exec_comma_function(line, shell, envp) != 1
+            && (my_strncmp(line, "\n", 1) != 0)) {
                 if (check_getline(shell, envp, x, line) == 84)
                     return 84;
+            }
         }
     }
     return 0;
