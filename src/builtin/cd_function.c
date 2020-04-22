@@ -33,7 +33,7 @@ int cd_normal(shell_t *shell, char *path)
 {
     static int value = 0;
 
-    if (value == 0 && my_strncmp(path, "-", 2)== 0) {
+    if (value == 0 && my_strncmp(path, "-", 2) == 0) {
         my_putstr(": No such file or directory.\n");
         return 1;
     } else if (value == 1 && my_strncmp(path, "-", 2) == 0)

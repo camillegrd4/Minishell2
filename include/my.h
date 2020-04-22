@@ -26,7 +26,7 @@
 char minishel(char **argv, char **envp);
 int my_function(shell_t *shell, char **envp);
 int cd_function(shell_t *shell);
-int exec_function(char **envp, shell_t *shell);
+int exec_function(char **envp, shell_t *shell, pid_t pid);
 int find_path(shell_t *shell, char **envp);
 shell_t *init_struct_minishell(void);
 int exit_function(shell_t *shell);
@@ -56,6 +56,13 @@ int check_getline(shell_t *shell, char **envp, int x, char *line);
 int call_exec_comma_function(char *line, shell_t *shell, char **envp);
 int check_line(char *line, shell_t *shell, int i);
 int exec_cd(shell_t *shell, char *path);
+int check_pipe(char **envp, char *line, shell_t *shell, int i);
+char *fill_second_arg(shell_t *shell, int i, char *line);
+char *fill_first_arg(shell_t *shell, char *line);
+int check_function(char **envp, shell_t *shell, char *line, int i);
+int check_comma_function(char *line, shell_t *shell, char **envp, int x);
+int check_pipe_function(char **envp, char *line, shell_t *shell, int i);
+int exec_first_arg(char **envp, char *line, shell_t *shell, int i);
 
 /*lib*/
 int my_strlen_comma(char const *str);
@@ -78,6 +85,7 @@ char *my_strcat_two(char *dest, char const *src);
 int my_putstr_without_return(char const *str);
 int my_strlen_env(char *str);
 int my_strlen_egale(char const *str);
+int my_strlen_pipe(char const *str);
 
 /*criterion*/
 void redirect_all_stdout(void);

@@ -67,7 +67,9 @@ int exec_function_next(char **envp, shell_t *shell, pid_t pid)
 {
     int wstatus = 0;
 
-    pid = fork();
+    if (pid == 5) {
+        pid = fork();
+    }
     if (pid == -1)
         return 84;
     if (pid == 0) {
@@ -81,10 +83,9 @@ int exec_function_next(char **envp, shell_t *shell, pid_t pid)
     return 0;
 }
 
-int exec_function(char **envp, shell_t *shell)
+int exec_function(char **envp, shell_t *shell, pid_t pid)
 {
     struct stat buf;
-    pid_t pid;
 
     if (!envp || !shell)
         return 84;

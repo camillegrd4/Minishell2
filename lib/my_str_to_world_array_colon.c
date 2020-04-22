@@ -14,7 +14,7 @@ int number_char_colon(char *str, int i)
     if (!str)
         return 84;
     while (str[i] != '\0') {
-        if ((str[i] == ':' || str[i] == ' ' || str[i] == '\t')
+        if ((str[i] == ':' || str[i] == ' ' || str[i] == '\t' && str[i] != '|')
         && (str[i + 1] != ':' && str[i + 1] != ' ' && str[i + 1] != '\t'))
             number_char += 1;
         i += 1;
@@ -43,8 +43,8 @@ char **add_letter_colon(char **array, int number, char *str, int i)
         while (str[i] == ' ' || str[i] == '\t' || str[i] == ':')
             i++;
         array[a] = malloc(sizeof(char) * (lines_colon(&str[i]) + 1));
-        while (str[i] != '\0' && str[i] != ':' && str[i] != '\t' && 
-        str[i] != ' ' && str[i] != '\n') {
+        while (str[i] != '\0' && str[i] != ':' && str[i] != '\t' &&
+        str[i] != ' ' && str[i] != '\n' && str[i] != '|') {
             array[a][j] = str[i];
             j += 1;
             i += 1;

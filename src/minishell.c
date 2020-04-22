@@ -9,12 +9,14 @@
 
 int my_function(shell_t *shell, char **envp)
 {
+    pid_t pid = 5;
+
     if (!envp || !shell)
         return 84;
     if (call_function_recode(envp, shell) == 1) {
         return 1;
     }
-    else if (exec_function(envp, shell) == 84) {
+    else if (exec_function(envp, shell, pid) == 84) {
         return 84;
     }
     return 0;
@@ -51,11 +53,15 @@ int principal_function(char **envp, shell_t *shell)
             my_putstr("exit\n");
             exit(0);
         }
+        printf("oui\n");
         if (x != -1) {
-            if (call_exec_comma_function(line, shell, envp) != 1
-            && (my_strncmp(line, "\n", 1) != 0)) {
-                if (check_getline(shell, envp, x, line) == 84)
-                    return 84;
+            printf("ici\n");
+            x = check_pipe_function(envp, line, shell, i);
+            if (x == 1 || x == 84)
+                return x;
+            if (x != 2) {
+                printf("bloqué la\n");
+                check_comma_function(line, shell, envp, x);
             }
         }
     }

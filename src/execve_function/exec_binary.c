@@ -26,6 +26,7 @@ int exec_binary(shell_t *shell, char **envp)
     }
     return 0;
 }
+
 int exec_function_system(shell_t *shell, char **envp, int i)
 {
     shell->path_bis[i] = my_strcat_two(shell->path_bis[i], shell->array[0]);
