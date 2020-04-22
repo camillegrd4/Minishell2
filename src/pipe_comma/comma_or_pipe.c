@@ -47,8 +47,7 @@ int check_pipe_function(char **envp, char *line, shell_t *shell, int i)
         if (line[i] == '|') {
             fill_first_arg_pipe(shell, line);
             fill_second_arg_pipe(shell, i, line);
-            if (exec_first_arg(envp, line, shell, i) == 2)
-                return 2;
+            exec_first_arg(envp, line, shell, i);
             return 2;
         }
         i++;

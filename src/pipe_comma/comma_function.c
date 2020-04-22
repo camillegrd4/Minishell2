@@ -27,9 +27,11 @@ char *fill_second_arg(shell_t *shell, int i, char *line)
 {
     int x = 0;
 
-    while (line[i] == ' ' || line[i] == ';') {
+    while (line[i] == ' ' || line[i] == ';' || line[i] == '\t') {
         i++;
     }
+    if (line[i] == '\0' || line[i] == '\n')
+        return 0;
     shell->comma->second_arg = malloc(sizeof(my_strlen(line) - i) + 1);
     while (i < my_strlen(line) + 1) {
         shell->comma->second_arg[x] = line[i];
@@ -50,16 +52,20 @@ int call_exec_comma_function(char *line, shell_t *shell, char **envp)
     while (value != 2) {
         if (value == 0) {
             shell->cmd = shell->comma->first_arg;
-            shell->array = my_str_to_world_array_colon(shell->cmd);
+            if (shell->cmd)
+                shell->array = my_str_to_world_array_colon(shell->cmd);
             value = 1;
             if (my_function(shell, envp) == 84)
                 return 84;
         } else if (value == 1) {
             shell->cmd = shell->comma->second_arg;
-            shell->array = my_str_to_world_array_colon(shell->cmd);
-            value = 2;
-            if (my_function(shell, envp) == 84)
-                return 84;
+            if (shell->cmd) {
+                shell->array = my_str_to_world_array_colon(shell->cmd);
+                value = 2;
+                if (my_function(shell, envp) == 84)
+                    return 84;
+            }
+            return 1;
         }
     }
     return 1;

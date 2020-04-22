@@ -53,14 +53,11 @@ int principal_function(char **envp, shell_t *shell)
             my_putstr("exit\n");
             exit(0);
         }
-        printf("oui\n");
         if (x != -1) {
-            printf("ici\n");
             x = check_pipe_function(envp, line, shell, i);
             if (x == 1 || x == 84)
                 return x;
-            if (x != 2) {
-                printf("bloqué la\n");
+            else if (x != 2) {
                 check_comma_function(line, shell, envp, x);
             }
         }
