@@ -42,6 +42,14 @@ char *fill_second_arg(shell_t *shell, int i, char *line)
     return 0;
 }
 
+int check_path_comma(int a, shell_t *shell, char **envp)
+{
+    if (shell->array[a] != NULL)
+        if (my_function(shell, envp) == 84)
+            return 84;
+    return 0;
+}
+
 int call_exec_comma_function(char *line, shell_t *shell, char **envp)
 {
     int i = 0;
@@ -53,7 +61,6 @@ int call_exec_comma_function(char *line, shell_t *shell, char **envp)
     if (check_line(line, shell, i) == 0)
         return 0;
     while (shell->path_bis[i]) {
-        y = 0;
         if (shell->path_bis[i][y] == '\0')
             return 1;
         while (shell->path_bis[i][y] == ' ' || shell->path_bis[i][y] == ';')
@@ -61,9 +68,7 @@ int call_exec_comma_function(char *line, shell_t *shell, char **envp)
         if (shell->path_bis[i][y] != ';' && shell->path_bis[i][y] != ' ') {
             shell->array = my_str_to_world_array_colon(shell->path_bis[i]);
             value = 1;
-            if (shell->array[a] != NULL)
-                if (my_function(shell, envp) == 84)
-                    return 84;
+            if (check_path_comma(a, shell, envp) == 84) return 84;
         }
         i++;
     }
