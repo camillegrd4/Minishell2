@@ -74,15 +74,3 @@ int check_line(char *line, shell_t *shell, int i)
     }
     return 0;
 }
-
-
-/*while (line[i] != '\0') {
-        if (line[i] == ';') {
-            fill_first_arg(shell, line);
-            fill_second_arg(shell, i, line);
-            value += 2;
-        }
-        i++;
-    }
-    printf("%i\n", value);
-    return value;*/
