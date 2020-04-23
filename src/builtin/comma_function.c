@@ -45,9 +45,8 @@ int call_exec_comma_function(char *line, shell_t *shell, char **envp)
     int i = 0;
     int value = 0;
 
-    if (check_line(line, shell, i) != 2) {
+    if (check_line(line, shell, i) != 2)
         return 0;
-    }
     while (value != 2) {
         if (value == 0) {
             shell->cmd = shell->comma->first_arg;
