@@ -49,37 +49,40 @@ int call_exec_comma_function(char *line, shell_t *shell, char **envp)
 
     if (check_line(line, shell, i) == 0)
         return 0;
-    while (value != 2) {
-        if (value == 0) {
-            shell->cmd = shell->comma->first_arg;
-            if (shell->cmd)
-                shell->array = my_str_to_world_array_colon(shell->cmd);
-            value = 1;
-            if (my_function(shell, envp) == 84)
-                return 84;
-        } else if (value == 1) {
-            shell->cmd = shell->comma->second_arg;
-            if (shell->cmd) {
-                shell->array = my_str_to_world_array_colon(shell->cmd);
-                value = 2;
-                if (my_function(shell, envp) == 84)
-                    return 84;
-            }
-            return 1;
-        }
+    while (shell->path_bis[i]) {
+        shell->array = my_str_to_world_array_colon(shell->path_bis[i]);
+        value = 1;
+        if (my_function(shell, envp) == 84)
+            return 84;
+        i++;
     }
     return 1;
 }
 
 int check_line(char *line, shell_t *shell, int i)
 {
+    int value = 0;
+    char **path = NULL;
+    int j = 0;
+
     while (line[i] != '\0') {
         if (line[i] == ';') {
-            fill_first_arg(shell, line);
-            fill_second_arg(shell, i, line);
+            shell->path_bis = my_str_to_world_array_comma(line);
             return 2;
         }
         i++;
     }
     return 0;
 }
+
+
+/*while (line[i] != '\0') {
+        if (line[i] == ';') {
+            fill_first_arg(shell, line);
+            fill_second_arg(shell, i, line);
+            value += 2;
+        }
+        i++;
+    }
+    printf("%i\n", value);
+    return value;*/

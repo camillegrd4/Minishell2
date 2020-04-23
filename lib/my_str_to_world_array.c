@@ -14,7 +14,7 @@ int number_char(char *str, int i)
     if (!str)
         return 84;
     while (str[i] != '\0') {
-        if ((str[i] == ' ' || str[i] == '\t'
+        if ((str[i] == ' ' || str[i] == '\t' || str[i] == ';'
         && str[i + 1] != ' ' && str[i + 1] != '\t'))
             number_char += 1;
         i += 1;
@@ -44,7 +44,7 @@ char **add_letter(char **array, int number, char *str, int i)
             i++;
         array[a] = malloc(sizeof(char) * (lines(&str[i]) + 1));
         while (str[i] != '\0' && str[i] != '\t'
-        && str[i] != ' ' && str[i] != '\n') {
+        && str[i] != ' ' && str[i] != '\n' || str[i] == ';') {
             array[a][j] = str[i];
             j += 1;
             i += 1;
@@ -70,7 +70,7 @@ char **check_space(char **array, int number, char **form)
         form[a] = malloc(sizeof(char) * (my_strlen(array[i])) + 1);
         if (!form) return NULL;
         while (array[i][j]) {
-            if (array[i][j] == ' '|| array[i][j] == '[' || array[i][j] == ']')
+            if (array[i][j] == ' ' || array[i][j] == '[' || array[i][j] == ']')
                 j++;
             else if (array[i][j])
                 form[a][x++] = array[i][j++];

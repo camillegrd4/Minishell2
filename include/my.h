@@ -63,6 +63,8 @@ int check_function(char **envp, shell_t *shell, char *line, int i);
 int check_comma_function(char *line, shell_t *shell, char **envp, int x);
 int check_pipe_function(char **envp, char *line, shell_t *shell, int i);
 int exec_first_arg(char **envp, char *line, shell_t *shell, int i);
+char **add_letter_colon(char **array, int number, char *str, int i);
+char **check_space_colon(char **array, int number, char **form);
 
 /*lib*/
 int my_strlen_comma(char const *str);
@@ -86,6 +88,9 @@ int my_putstr_without_return(char const *str);
 int my_strlen_env(char *str);
 int my_strlen_egale(char const *str);
 int my_strlen_pipe(char const *str);
+char **my_str_to_world_array_comma(char *str);
+char **check_space_comma(char **array, int number, char **form);
+char **add_letter_comma(char **array, int number, char *str, int i);
 
 /*criterion*/
 void redirect_all_stdout(void);

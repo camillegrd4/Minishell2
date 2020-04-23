@@ -45,26 +45,29 @@ int find_line_unset(shell_t *shell, int i, int j, int y)
     return 0;
 }
 
+int check_arg_unset(shell_t *shell)
+{
+    if (!shell->array[1]) {
+        my_putstr("unsetenv: Too few arguments.\n");
+        return 1;
+    }
+    return 0;
+}
+
 int my_unsetenv(shell_t *shell)
 {
     int y = 0;
     int i = 0;
     int j = 0;
     int number = 1;
-
-    if (!shell->array[1]) {
-        my_putstr("unsetenv: Too few arguments.\n");
-        return 1;
-    }
+    if (check_arg_unset(shell) == 1) return 1;
     while (shell->array[number]) {
         shell->unset = my_strdup(shell->array[number]);
         while (shell->save_env[y] != NULL) {
             if (shell->save_env[y][i] == shell->unset[j]) {
                 if (i = find_line_unset(shell, i, j, y) != 1) {
                     shell->save_env = remove_line(shell, i, y);
-                    break;
-                } else
-                    y++;
+                    break;}
             } else
                 y++;
         }

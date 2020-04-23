@@ -41,6 +41,7 @@ LIB =				lib/my_putchar.c 					\
 					lib/my_strncmp_next.c 				\
 					lib/my_strdup.c						\
 					lib/my_strcat_two.c 				\
+					lib/my_str_to_world_array_comma.c 	\
 
 CFLAGS	=	-I ./include -g
 
