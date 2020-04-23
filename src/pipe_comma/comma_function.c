@@ -45,15 +45,26 @@ char *fill_second_arg(shell_t *shell, int i, char *line)
 int call_exec_comma_function(char *line, shell_t *shell, char **envp)
 {
     int i = 0;
+    int y = 0;
+    int x = 0;
+    int a = 0;
     int value = 0;
 
     if (check_line(line, shell, i) == 0)
         return 0;
     while (shell->path_bis[i]) {
-        shell->array = my_str_to_world_array_colon(shell->path_bis[i]);
-        value = 1;
-        if (my_function(shell, envp) == 84)
-            return 84;
+        y = 0;
+        if (shell->path_bis[i][y] == '\0')
+            return 1;
+        while (shell->path_bis[i][y] == ' ' || shell->path_bis[i][y] == ';')
+            y++;
+        if (shell->path_bis[i][y] != ';' && shell->path_bis[i][y] != ' ') {
+            shell->array = my_str_to_world_array_colon(shell->path_bis[i]);
+            value = 1;
+            if (shell->array[a] != NULL)
+                if (my_function(shell, envp) == 84)
+                    return 84;
+        }
         i++;
     }
     return 1;
