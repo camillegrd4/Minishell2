@@ -13,6 +13,10 @@ char *fill_first_arg_pipe(shell_t *shell, char *line)
     int x = 0;
     int value = my_strlen_pipe(line) - 1;
 
+    if (value <= 0) {
+        my_putstr("Invalid null command.\n");
+        return NULL;
+    }
     shell->comma->first_arg_pipe = malloc(sizeof(my_strlen_pipe(line)) + 1);
     while (i != value) {
         shell->comma->first_arg_pipe[x] = line[i];
