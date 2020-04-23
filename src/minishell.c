@@ -38,6 +38,16 @@ int check_getline(shell_t *shell, char **envp, int x, char *line)
     return 0;
 }
 
+int check_error_main(int x, char *line, shell_t *shell, char **envp)
+{
+    if (x == 1 || x == 84)
+        return x;
+    else if (x != 2) {
+        check_comma_function(line, shell, envp, x);
+    }
+    return 0;
+}
+
 int principal_function(char **envp, shell_t *shell)
 {
     size_t n = 0;
@@ -55,11 +65,9 @@ int principal_function(char **envp, shell_t *shell)
         }
         if (x != -1) {
             x = check_pipe_function(envp, line, shell, i);
+            x = check_error_main(x, line, shell, envp);
             if (x == 1 || x == 84)
                 return x;
-            else if (x != 2) {
-                check_comma_function(line, shell, envp, x);
-            }
         }
     }
     return 0;

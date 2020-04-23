@@ -17,7 +17,8 @@ int change_save_env(char **envp, shell_t *shell)
     shell->new_env = malloc(sizeof(char *)
         * (count_line(shell->save_env)) + 2);
     while (shell->save_env[j] != NULL) {
-        shell->new_env[i] = malloc(sizeof(char) * (my_strlen(shell->save_env[j])
+        shell->new_env[i] = malloc(sizeof(char)
+        * (my_strlen(shell->save_env[j])
         + my_strlen(arg_one) + my_strlen(arg_two)) + 2);
         shell->new_env[i] = my_strdup(shell->save_env[j]);
         j++;
