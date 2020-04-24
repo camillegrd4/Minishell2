@@ -5,14 +5,6 @@
 ## make
 ##
 
-SRC	=		src/main.c 						\
-			src/minishell.c 				\
-			src/init_struct.c 				\
-			$(BUILTIN)						\
-			$(PIPE_COMMA)					\
-			$(EXECVE_FUNCTION)				\
-			$(LIB)							\
-
 BUILTIN =			src/builtin/call_function_recode.c 	\
 					src/builtin/cd_function.c 			\
 					src/builtin/unsetenv_function.c 	\
@@ -43,11 +35,19 @@ LIB =				lib/my_putchar.c 					\
 					lib/my_strcat_two.c 				\
 					lib/my_str_to_world_array_comma.c 	\
 
+SRCS	=		src/main.c 						\
+				src/minishell.c 				\
+				src/init_struct.c 				\
+				$(BUILTIN)						\
+				$(PIPE_COMMA)					\
+				$(EXECVE_FUNCTION)				\
+				$(LIB)							\
+
 CFLAGS	=	-I ./include -g
 
 LDFLAGS =	-L./lib
 
-OBJ	=	$(SRC:.c=.o)
+OBJ	=	$(SRCS:.c=.o)
 
 NAME	=	mysh
 
