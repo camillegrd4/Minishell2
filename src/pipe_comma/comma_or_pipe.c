@@ -11,7 +11,7 @@ char *fill_first_arg_pipe(shell_t *shell, char *line)
 {
     int i = 0;
     int x = 0;
-    int value = my_strlen_pipe(line) - 1;
+    int value = my_strlen_pipe(line);
 
     if (value <= 0) {
         my_putstr("Invalid null command.\n");
