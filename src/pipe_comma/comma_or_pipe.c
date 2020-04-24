@@ -44,7 +44,6 @@ char *fill_second_arg_pipe(shell_t *shell, int i, char *line)
     return 0;
 }
 
-
 int check_pipe_function(char **envp, char *line, shell_t *shell, int i)
 {
     while (line[i] != '\0') {
