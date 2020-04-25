@@ -11,7 +11,6 @@
 typedef struct shell {
     char *cmd;
     char **array;
-    char **array_two;
     char *path;
     char **path_bis;
     char **save_env;
@@ -21,7 +20,6 @@ typedef struct shell {
     int line;
     char *unset;
     int pos;
-    int find_line;
     struct comma_s *comma;
 }shell_t;
 

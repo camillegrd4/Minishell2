@@ -17,7 +17,7 @@ char *fill_first_arg_pipe(shell_t *shell, char *line)
         my_putstr("Invalid null command.\n");
         return NULL;
     }
-    shell->comma->first_arg_pipe = malloc(sizeof(my_strlen_pipe(line)) + 1);
+    shell->comma->first_arg_pipe = malloc(sizeof(char) * (my_strlen_pipe(line) + 1));
     while (i != value) {
         shell->comma->first_arg_pipe[x] = line[i];
         i++;
@@ -34,7 +34,7 @@ char *fill_second_arg_pipe(shell_t *shell, int i, char *line)
     while (line[i] == ' ' || line[i] == '|') {
         i++;
     }
-    shell->comma->second_arg_pipe = malloc(sizeof(my_strlen(line) - i) + 1);
+    shell->comma->second_arg_pipe = malloc(sizeof(char) * (my_strlen(line) + 1));
     while (i < my_strlen(line) + 1) {
         shell->comma->second_arg_pipe[x] = line[i];
         i++;

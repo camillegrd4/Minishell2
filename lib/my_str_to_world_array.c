@@ -67,7 +67,7 @@ char **check_space(char **array, int number, char **form)
     while (array[i]) {
         j = 0;
         x = 0;
-        form[a] = malloc(sizeof(char) * (my_strlen(array[i])) + 1);
+        form[a] = malloc(sizeof(char) * (my_strlen(array[i]) + 2));
         if (!form) return NULL;
         while (array[i][j]) {
             if (array[i][j] == ' ' || array[i][j] == '[' || array[i][j] == ']')
@@ -97,7 +97,7 @@ char **my_str_to_world_array(char *str)
     number = number_char(str, i) + 1;
     array = malloc(sizeof(char *) * (number + 1));
     array = add_letter(array, number, str, i);
-    form = malloc(sizeof(char *) * (number));
-    array = check_space(array, number, form);
+    form = malloc(sizeof(char *) * (number + 2));
+    array = check_space(array, (number), form);
     return array;
 }

@@ -9,7 +9,6 @@
 
 static int exec_father(pid_t pid, shell_t *shell, char **envp, int fd[2])
 {
-    int x = 0;
     int y = 0;
     shell->array =
             my_str_to_world_array_colon(shell->comma->second_arg_pipe);
@@ -19,7 +18,7 @@ static int exec_father(pid_t pid, shell_t *shell, char **envp, int fd[2])
     }
     close(fd[1]);
     dup2(fd[0], 0);
-    if (x = call_function_recode(envp, shell) == 1)
+    if (call_function_recode(envp, shell) == 1)
         return 1;
     else if (exec_function(envp, shell, pid) == 84)
         return 84;
@@ -49,11 +48,9 @@ static int exec_arg(pid_t pid, shell_t *shell, char **envp, int *fd)
         return 1;
     }
     if (pid_two == 0) {
-        if (exec_child(shell, pid_two, envp, fd) == 1)
-            return 1;
+        exec_child(shell, pid_two, envp, fd);
     } else {
-        if (exec_father(pid, shell, envp, fd) == 1)
-            return 1;
+        exec_father(pid, shell, envp, fd);
     }
     return 0;
 }

@@ -29,10 +29,22 @@ int change_env_next(shell_t *shell, int line)
     return 0;
 }
 
+int check_too_much_arg(shell_t *shell)
+{
+    if (!shell)
+        return 84;
+    if (my_strncmp(shell->array[2], " ", 1) != 0 && shell->array[3]) {
+        my_putstr("setenv: Too many arguments.\n");
+        return 1;
+    }
+    return 0;
+}
+
 int check_arg(char *name, shell_t *shell)
 {
     int i = 0;
 
+    if (!name || !shell) return 84;
     while (name[i] != '\0') {
         if (name[i] == '=') {
             my_putstr(shell->array[0]);
@@ -42,10 +54,8 @@ int check_arg(char *name, shell_t *shell)
         }
         i++;
     }
-    if (shell->array[3] && my_strncmp(shell->array[2], " ", 1) != 0) {
-        my_putstr("setenv: Too many arguments.\n");
+    if (check_too_much_arg(shell) == 1)
         return 1;
-    }
     return 0;
 }
 
@@ -73,8 +83,8 @@ char *change_line(shell_t *shell, int i, int y)
     char *new = NULL;
 
     shell->remove = my_strdup(shell->array[2]);
-    new = malloc(sizeof(char ) * (my_strlen(shell->remove)
-        + my_strlen(shell->array[1])) + 2);
+    new = malloc(sizeof(char) * (my_strlen(shell->remove)
+        + my_strlen(shell->array[1]) + 2));
     while (shell->save_env[y][i] != '=') {
         new[x] = shell->save_env[y][i];
         i++;

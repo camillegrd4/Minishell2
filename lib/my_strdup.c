@@ -14,7 +14,7 @@ char *my_strdup(char const *str)
 
     if (!str)
         return NULL;
-    dest = malloc(sizeof(char) * (my_strlen(str) + 1));
+    dest = malloc(sizeof(char) * (my_strlen(str) + 2));
     if (!dest)
         return NULL;
     while (str[i] != 0) {

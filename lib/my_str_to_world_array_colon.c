@@ -97,7 +97,7 @@ char **my_str_to_world_array_colon(char *str)
     number = number_char_colon(str, i) + 1;
     array = malloc(sizeof(char *) * (number + 1));
     array = add_letter_colon(array, number, str, i);
-    form = malloc(sizeof(char *) * (number));
-    array = check_space_colon(array, number, form);
+    form = malloc(sizeof(char *) * (number + 2));
+    array = check_space_colon(array, (number), form);
     return array;
 }

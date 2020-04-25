@@ -11,8 +11,9 @@ int my_function(shell_t *shell, char **envp)
 {
     pid_t pid = 5;
 
-    if (!envp || !shell)
+    if (!envp || !shell) {
         return 84;
+    }
     if (call_function_recode(envp, shell) == 1) {
         return 1;
     }
@@ -24,16 +25,20 @@ int my_function(shell_t *shell, char **envp)
 
 int check_getline(shell_t *shell, char **envp, int x, char *line)
 {
+    if (!shell || !envp || !line)
+        return 84;
     if (x != -1) {
         shell->cmd = line;
         shell->array = my_str_to_world_array(shell->cmd);
     }
     if (!shell->cmd) {
         my_putstr("exit\n");
+        free(shell);
         exit(0);
     } else if (x != -1) {
-        if (my_function(shell, envp) == 84)
+        if (my_function(shell, envp) == 84) {
             return 84;
+        }
     }
     return 0;
 }
@@ -54,12 +59,14 @@ int principal_function(char **envp, shell_t *shell)
     char *line = NULL;
     int x = 0;
     int i = 0;
-
+    if (!shell || !envp)
+        return 84;
     while (1) {
         i = 0;
         if (isatty(STDIN_FILENO) == 1)
             my_putstr("$ > ");
         if (x = getline(&line, &n, stdin) == -1) {
+            free(shell);
             my_putstr("exit\n");
             exit(0);
         }
@@ -75,12 +82,17 @@ int principal_function(char **envp, shell_t *shell)
 
 char minishel(char **argv, char **envp)
 {
-    shell_t *shell = init_struct_minishell();
+    shell_t *shell = NULL;
 
-    if (!argv || !envp || !shell)
+    if (!argv || !envp)
         return 84;
+    shell = init_struct_minishell(envp);
     shell->save_env = create_list_env(envp, shell);
-    if (principal_function(envp, shell) == 84)
+    if (!shell)
         return 84;
+    if (principal_function(envp, shell) == 84) {
+        free(shell);
+        return 84;
+    }
     return 0;
 }

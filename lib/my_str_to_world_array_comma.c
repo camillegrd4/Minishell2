@@ -28,7 +28,7 @@ int lines_comma(char *str)
     if (!str)
         return 84;
     while (str[i] != '\0') {
-        i += 1;
+        i++;
     }
     return i;
 }
@@ -41,7 +41,7 @@ char **add_letter_comma(char **array, int number, char *str, int i)
     while (number > 0 && i <= my_strlen(str)) {
         while (str[i] == ';')
             i++;
-        array[a] = malloc(sizeof(char) * (lines_comma(&str[i]) + 1));
+        array[a] = malloc(sizeof(char) * (lines_comma(&str[i]) + 2));
         while (str[i] != '\0' && str[i] != '\n' && str[i] != ';') {
             array[a][j] = str[i];
             j += 1;
@@ -68,7 +68,7 @@ char **my_str_to_world_array_comma(char *str)
         i++;
     }
     number = number_char_comma(str, i) + 1;
-    array = malloc(sizeof(char *) * (number + 1));
-    array = add_letter_comma(array, number, str, i);
+    array = malloc(sizeof(char *) * (number + 2));
+    array = add_letter_comma(array, (number), str, i);
     return array;
 }

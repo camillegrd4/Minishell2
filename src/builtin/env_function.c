@@ -19,11 +19,13 @@ int find_line(shell_t *shell, int i, int j, int y)
     return 0;
 }
 
-int count_line(char **envp)
+int count_line(char **envp, shell_t *shell)
 {
     int i = 0;
-    int counter = 0;
+    int const number = 0;
 
+    if (number > 0)
+        envp = shell->save_env;
     while (envp[i] != NULL) {
         i++;
     }
@@ -34,24 +36,24 @@ char **create_list_env(char **envp, shell_t *shell)
 {
     int i = 0;
     int j = 0;
-    char **str = malloc(sizeof(char *) * (count_line(envp)) + 1);
 
+    shell->save_env = malloc(sizeof(char*) * (count_line(envp, shell) + 1));
     while (envp[j] != NULL) {
-        str[i] = malloc(sizeof(char) * (my_strlen(envp[j])) + 1);
-        str[i] = my_strdup(envp[j]);
+        shell->save_env[i] = malloc(sizeof(char) * (my_strlen(envp[j]) + 1));
+        shell->save_env[i] = my_strdup(envp[j]);
         j++;
         i++;
     }
-    str[i] = NULL;
-    return str;
+    shell->save_env[i] = NULL;
+    return shell->save_env;
 }
 
 int print_env(char **str, shell_t *shell)
 {
     int i = 0;
 
-    while (str[i] != NULL) {
-        my_putstr(str[i]);
+    while (shell->save_env[i] != NULL) {
+        my_putstr(shell->save_env[i]);
         my_putchar('\n');
         i++;
     }
