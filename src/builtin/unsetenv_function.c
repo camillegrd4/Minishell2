@@ -67,7 +67,8 @@ int my_unsetenv(shell_t *shell)
             if (shell->save_env[y][i] == shell->unset[j]) {
                 if (i = find_line_unset(shell, i, j, y) != 1) {
                     shell->save_env = remove_line(shell, i, y);
-                    break;}
+                    break;
+                }
             } else
                 y++;
         }

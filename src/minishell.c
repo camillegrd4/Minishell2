@@ -51,7 +51,7 @@ int check_error_main(int x, char *line, shell_t *shell, char **envp)
 int principal_function(char **envp, shell_t *shell)
 {
     size_t n = 0;
-    char *line;
+    char *line = NULL;
     int x = 0;
     int i = 0;
 

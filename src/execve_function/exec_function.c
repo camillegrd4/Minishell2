@@ -67,9 +67,8 @@ int exec_function_next(char **envp, shell_t *shell, pid_t pid)
 {
     int wstatus = 0;
 
-    if (pid == 5) {
+    if (pid == 5)
         pid = fork();
-    }
     if (pid == -1)
         return 84;
     if (pid == 0) {
