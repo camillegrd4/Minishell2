@@ -59,8 +59,6 @@ int principal_function(char **envp, shell_t *shell)
     char *line = NULL;
     int x = 0;
     int i = 0;
-    if (!shell || !envp)
-        return 84;
     while (1) {
         i = 0;
         if (isatty(STDIN_FILENO) == 1)

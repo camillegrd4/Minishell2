@@ -32,7 +32,8 @@ char **remove_line(shell_t *shell, int i, int y)
 int find_line_unset(shell_t *shell, int i, int j, int y)
 {
     int x = 0;
-    char *save = malloc(sizeof(char) * (my_strlen_egale(shell->save_env[y]) + 2));
+    char *save = malloc(sizeof(char) *
+    (my_strlen_egale(shell->save_env[y]) + 2));
 
     if (!shell || !save) {
         return 84;
@@ -65,7 +66,6 @@ int my_unsetenv(shell_t *shell)
     int i = 0;
     int j = 0;
     int number = 1;
-    if (!shell) return 84;
     if (check_arg_unset(shell) == 1) return 1;
     while (shell->array[number]) {
         shell->unset = my_strdup(shell->array[number]);
@@ -76,11 +76,11 @@ int my_unsetenv(shell_t *shell)
                     break;
                 }
             } else
-                y++;
-        }
+                y++;}
         number++;
         i = 0;
         y = 0;
-        j = 0;}
+        j = 0;
+        }
     return 0;
 }

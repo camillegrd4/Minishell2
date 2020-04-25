@@ -81,7 +81,6 @@ char *change_line(shell_t *shell, int i, int y)
     int j = 0;
     int x = 0;
     char *new = NULL;
-
     shell->remove = my_strdup(shell->array[2]);
     new = malloc(sizeof(char) * (my_strlen(shell->remove)
         + my_strlen(shell->array[1]) + 2));

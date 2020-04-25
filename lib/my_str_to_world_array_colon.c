@@ -91,6 +91,8 @@ char **my_str_to_world_array_colon(char *str)
     int i = 0;
     int a = 0;
 
+    if (!str)
+        return NULL;
     while (str[i] == ' ') {
         i++;
     }
