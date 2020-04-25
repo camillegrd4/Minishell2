@@ -49,7 +49,7 @@ int my_strlen_egale(char const *str)
 
     if (!str)
         return 84;
-    while (str[i] != '=') {
+    while (str[i] != '=' && str[i] != '\0' && str[i] != '\n') {
         i++;
     }
     return i;

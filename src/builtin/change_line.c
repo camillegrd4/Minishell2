@@ -97,5 +97,6 @@ char *change_line(shell_t *shell, int i, int y)
         x++;
         j++;
     }
+    new[x] = '\0';
     return new;
 }
