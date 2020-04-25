@@ -45,7 +45,6 @@ char **create_list_env(char **envp, shell_t *shell)
         i++;
     }
     shell->save_env[i] = NULL;
-    return shell->save_env;
 }
 
 int print_env(char **str, shell_t *shell)

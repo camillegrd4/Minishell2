@@ -85,7 +85,7 @@ char minishel(char **argv, char **envp)
     if (!argv || !envp)
         return 84;
     shell = init_struct_minishell(envp);
-    shell->save_env = create_list_env(envp, shell);
+    create_list_env(envp, shell);
     if (!shell)
         return 84;
     if (principal_function(envp, shell) == 84) {

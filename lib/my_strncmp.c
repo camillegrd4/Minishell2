@@ -19,8 +19,8 @@ int my_strncmp(char const *s1, char const *s2, int n)
             return (s1[i] - s2[j]);
         if (s1[i] - s2[j] > 0)
             return (s1[i] - s2[j]);
-        i++;
-        j++;
+        i = i + 1;
+        j = j + 1;
     }
     if (s1[i] != s2[j])
         return 1;
