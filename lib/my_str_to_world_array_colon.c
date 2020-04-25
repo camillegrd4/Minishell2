@@ -67,7 +67,7 @@ char **check_space_colon(char **array, int number, char **form)
     while (array[i]) {
         j = 0;
         x = 0;
-        form[a] = malloc(sizeof(char) * (my_strlen(array[i])) + 1);
+        form[a] = malloc(sizeof(char) * (my_strlen(array[i]) + 1));
         if (!form) return NULL;
         while (array[i][j]) {
             if (array[i][j] == ' ')
@@ -97,7 +97,7 @@ char **my_str_to_world_array_colon(char *str)
     number = number_char_colon(str, i) + 1;
     array = malloc(sizeof(char *) * (number + 1));
     array = add_letter_colon(array, number, str, i);
-    form = malloc(sizeof(char *) * (number + 2));
+    form = malloc(sizeof(char *) * (number + 1));
     array = check_space_colon(array, (number), form);
     return array;
 }

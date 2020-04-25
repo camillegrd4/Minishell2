@@ -20,7 +20,7 @@ static int exec_father(pid_t pid, shell_t *shell, char **envp, int fd[2])
     dup2(fd[0], 0);
     if (call_function_recode(envp, shell) == 1)
         return 1;
-    else if (exec_function(envp, shell, pid) == 84)
+    if (exec_function(envp, shell, pid) == 84)
         return 84;
     close(fd[0]);
     return 0;
@@ -28,11 +28,12 @@ static int exec_father(pid_t pid, shell_t *shell, char **envp, int fd[2])
 
 static int exec_child(shell_t *shell, pid_t pid, char **envp, int *fd)
 {
+    shell->array = my_str_to_world_array_colon(shell->comma->first_arg_pipe);
     close(fd[0]);
     dup2(fd[1], 1);
     if (call_function_recode(envp, shell) == 1)
         return 1;
-    else if (exec_function(envp, shell, pid) == 84)
+    if (exec_function(envp, shell, pid) == 84)
         return 84;
     close(fd[1]);
     return 0;
@@ -40,9 +41,7 @@ static int exec_child(shell_t *shell, pid_t pid, char **envp, int *fd)
 
 static int exec_arg(pid_t pid, shell_t *shell, char **envp, int *fd)
 {
-    int x = 0;
     pid_t pid_two;
-
     if ((pid_two = fork()) < 0) {
         my_putstr("Error fork\n");
         return 1;
@@ -59,6 +58,7 @@ int exec_first_arg(char **envp, char *line, shell_t *shell, int i)
 {
     pid_t pid;
     int fd[2];
+    int x = 0;
 
     if ((pid = fork()) < 0) {
         my_putstr("Error fork\n");
