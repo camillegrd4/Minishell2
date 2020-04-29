@@ -11,7 +11,8 @@ int exit_function(shell_t *shell)
 {
     if (!shell)
         return 84;
-    my_putstr("exit\n");
+    my_putstr("exit");
+    my_putchar('\n');
     exit(0);
     return 0;
 }

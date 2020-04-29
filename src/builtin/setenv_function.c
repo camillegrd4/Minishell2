@@ -17,7 +17,8 @@ int check_letter(char **envp, shell_t *shell)
         && (shell->array[i][j] < 'A' || shell->array[i][j] > 'Z')
         && (shell->array[i][j] < '1' || shell->array[i][j] > '9')) {
             my_putstr("setenv: Variable name must contain ");
-            my_putstr("alphanumeric characters.\n");
+            my_putstr("alphanumeric characters.");
+            my_putchar('\n');
             return 1;
         }
         j++;
@@ -33,7 +34,8 @@ int check_setenv(char **envp, shell_t *shell)
     }
     if ((shell->array[1][0] < 'a' || shell->array[1][0] > 'z')
     && (shell->array[1][0] < 'A' || shell->array[1][0] > 'Z')) {
-        printf("setenv: Variable name must begin with a letter.\n");
+        printf("setenv: Variable name must begin with a letter.");
+        my_putchar('\n');
         return 1;
     }
     if (check_letter(envp, shell) == 1)
