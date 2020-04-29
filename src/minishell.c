@@ -32,9 +32,7 @@ int check_getline(shell_t *shell, char **envp, int x, char *line)
         shell->array = my_str_to_world_array(shell->cmd);
     }
     if (!shell->cmd) {
-        my_putstr("exit");
-        my_putchar('\n');
-        free(shell);
+        my_putstr("exit\n");
         exit(0);
     } else if (x != -1) {
         if (my_function(shell, envp) == 84) {

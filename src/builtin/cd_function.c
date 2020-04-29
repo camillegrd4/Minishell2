@@ -12,20 +12,17 @@ int exec_cd(shell_t *shell, char *path)
     errno = 0;
     if (chdir(path) == -1) {
         if (errno == EACCES) {
-            my_putstr("error: Permission denied.");
-            my_putchar('\n');
+            my_putstr("error: Permission denied.\n");
             return 1;
         }
         if (errno == ENOENT) {
             my_putstr(path);
-            my_putstr(": No such file or directory.");
-            my_putchar('\n');
+            my_putstr(": No such file or directory.\n");
             return 1;
         }
         if (errno == ENOTDIR) {
             my_putstr(path);
-            my_putstr(": Not a directory.");
-            my_putchar('\n');
+            my_putstr(": Not a directory.\n");
             return 1;
         }
     }
