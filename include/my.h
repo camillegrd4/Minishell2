@@ -25,31 +25,16 @@
 /*src*/
 char minishel(char **argv, char **envp);
 int my_function(shell_t *shell, char **envp);
-int cd_function(shell_t *shell);
 int exec_function(char **envp, shell_t *shell, pid_t pid);
 int find_path(shell_t *shell, char **envp);
 shell_t *init_struct_minishell(char **envp);
-int exit_function(shell_t *shell);
-int unsetenv_function(shell_t *shell);
 int execve_function(char **envp, shell_t *shell);
-void redirect_all_stdout(void);
-int call_function_recode(char **envp, shell_t *shell);
-int call_function_recode_next(char **envp, shell_t *shell);
-int setenv_function(char **envp, shell_t *shell);
-char **create_list_env(char **envp, shell_t *shell);
-int print_env(char **str, shell_t *shell);
-int change_env(char **envp, shell_t *shell);
-int count_line(char **envp, shell_t *shell);
-char **add_line(char **envp, shell_t *shell);
-int change_save_env(char **envp, shell_t *shell);
-int find_line(shell_t *shell, int i, int j, int y);
-char *change_line(shell_t *shell, int i, int y);
-int change_env_next(shell_t *shell, int line);
-int my_unsetenv(shell_t *shell);
-char **remove_line(shell_t *shell, int i, int y);
 int access_function(int i, char **envp, char *path, shell_t *shell);
 int exec_binary(shell_t *shell, char **envp);
 int exec_function_system(shell_t *shell, char **envp, int i);
+
+
+/*comma_pipe*/
 char *check_path(char *path);
 int check_error_father(int wstatus);
 int check_getline(shell_t *shell, char **envp, int x, char *line);
@@ -63,14 +48,29 @@ int check_function(char **envp, shell_t *shell, char *line, int i);
 int check_comma_function(char *line, shell_t *shell, char **envp, int x);
 int check_pipe_function(char **envp, char *line, shell_t *shell, int i);
 int exec_first_arg(char **envp, char *line, shell_t *shell, int i);
-char **add_letter_colon(char **array, int number, char *str, int i);
-char **check_space_colon(char **array, int number, char **form);
-int check_letter(char **envp, shell_t *shell);
-int check_stars(shell_t *shell);
-int which_caracters(shell_t *shell, int i, int j);
-int check_second_arg(char **envp, shell_t *shell);
+
+/*builtin*/
+int cd_function(shell_t *shell);
+int exit_function(shell_t *shell);
+int unsetenv_function(shell_t *shell);
+int my_unsetenv(shell_t *shell);
+int change_env_next(shell_t *shell, int line, char **envp);
+char *change_line(shell_t *shell, char **envp, int i, int y);
+int call_function_recode(char **envp, shell_t *shell);
+int call_function_recode_next(char **envp, shell_t *shell);
+int setenv_function(char **envp, shell_t *shell);
+char **create_list_env(char **envp, shell_t *shell);
+int print_env(char **str, shell_t *shell);
+int change_env(char **envp, shell_t *shell);
+int count_line(char **envp, shell_t *shell);
+char **add_line(char **envp, shell_t *shell);
+int change_save_env(char **envp, shell_t *shell);
+int find_line(char **envp, shell_t *shell, int j, int y);
+char **remove_line(shell_t *shell, int i, int y);
 
 /*lib*/
+char **add_letter_colon(char **array, int number, char *str, int i);
+char **check_space_colon(char **array, int number, char **form);
 int my_strlen_comma(char const *str);
 int my_putchar(char c);
 int my_putstr(char const *str);
