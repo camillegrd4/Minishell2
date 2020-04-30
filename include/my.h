@@ -65,6 +65,10 @@ int check_pipe_function(char **envp, char *line, shell_t *shell, int i);
 int exec_first_arg(char **envp, char *line, shell_t *shell, int i);
 char **add_letter_colon(char **array, int number, char *str, int i);
 char **check_space_colon(char **array, int number, char **form);
+int check_letter(char **envp, shell_t *shell);
+int check_stars(shell_t *shell);
+int which_caracters(shell_t *shell, int i, int j);
+int check_second_arg(char **envp, shell_t *shell);
 
 /*lib*/
 int my_strlen_comma(char const *str);
